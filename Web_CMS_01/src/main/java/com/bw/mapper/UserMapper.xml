@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+	namespace:工作空间的名称   名称随意
+ -->
+<mapper namespace="com.bw.mapper.StudentDaoimpl">
+		
+	
+	<select id="Login" parameterType="com.bw.entity.User" resultType="com.bw.entity.User">
+		select * from c_user where uname=#{uname} and upwd=#{upwd}
+	</select>
+	
+	
+	<select id="stuList" resultType="com.bw.entity.Student">
+		select * from c_student 
+	</select>
+</mapper>
