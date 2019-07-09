@@ -1,0 +1,10 @@
+com\bw\entity\UserCourse.class
+com\bw\service\UserService.class
+com\bw\entity\Area.class
+com\bw\controller\UserController.class
+com\bw\utils\FileUtils.class
+com\bw\service\UserServiceimpl.class
+com\bw\entity\User.class
+com\bw\mapper\UserDao.class
+com\bw\utils\ResultUtil.class
+com\bw\entity\Course.class
