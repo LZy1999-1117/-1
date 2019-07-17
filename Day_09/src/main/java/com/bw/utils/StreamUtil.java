@@ -10,12 +10,17 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Scanner;
 
 public class StreamUtil {
+
+	static Scanner scanner = new Scanner(System.in);
 	
-	
+	@SuppressWarnings("resource")
 	public static void closeAll(FileInputStream fis) throws IOException {
 		//TODO
+		
+		
 		fis.close();
 	}
 	
@@ -61,7 +66,9 @@ public class StreamUtil {
 	
 	
 	public static String readStringFromSystemIn(String message){
-		return message;
+		String next = scanner.next();
+		System.out.println(next);
+		return next;
 		
 	}
 	
