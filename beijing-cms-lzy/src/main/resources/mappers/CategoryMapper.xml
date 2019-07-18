@@ -21,7 +21,15 @@
   <sql id="Base_Column_List">
     id, name, channel_id, sorted
   </sql>
-
+  
+  <!-- 根据频道查询种类 -->
+  <select id="getCategories" parameterType="int" resultType="category">
+    select 
+    <include refid="Base_Column_List" />
+    from cms_category
+    order by sorted asc
+    where channel_id=#{channel_id}
+  </select>
   
   <select id="selectAll" resultMap="BaseResultMap">
     select 

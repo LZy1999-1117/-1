@@ -92,5 +92,14 @@ public class HomeController {
 		
 		return "home";
 	}
-
+	
+	//RESTfule
+	@RequestMapping("/article")
+	public String article(Integer id,Model mode){
+		//增加访问量
+		articleService.increaseHit(id);
+		Article article = articleService.selectByPrimaryKey(id);
+		mode.addAttribute("blog", article);
+		return "blog";
+	}
 }

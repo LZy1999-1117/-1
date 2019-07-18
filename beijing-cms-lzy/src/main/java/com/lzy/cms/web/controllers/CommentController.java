@@ -9,11 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.lzy.cms.web.Constant;
 import com.lzy.cms.domain.Comment;
 import com.lzy.cms.domain.User;
 import com.lzy.cms.service.CommentService;
 import com.lzy.cms.utils.Result;
-import com.lzy.cms.web.Constant;
 
 /**
  * 评论Controller

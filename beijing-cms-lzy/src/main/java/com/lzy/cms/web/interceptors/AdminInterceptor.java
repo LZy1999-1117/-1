@@ -13,9 +13,9 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.lzy.cms.web.Constant;
 import com.lzy.cms.service.ChannelCategoryService;
 import com.lzy.cms.utils.WebUtil;
-import com.lzy.cms.web.Constant;
 
 /**
  * 说明:拦截器

@@ -29,5 +29,33 @@ public interface ArticleService {
 	 */
 	public abstract List<Article> gets(Article conditions, Page page, LinkedHashMap<String, Boolean> orders);
 	
+	
+	public List<Article> selects( Article article, LinkedHashMap<String, Boolean> orders,Page page);
+	
+	
+	
+	/**
+	 * 功能说明：统计<br>
+	 * @param article
+	 * @return
+	 * int
+	 */
+	public int count(@Param("article") Article article);
+	
+	//根据主键查询
+	public Article selectByPrimaryKey(Integer id);
+	
+	//根据id 更新
+	public int updateByKey(Article article);
+	
+	void saveBlog(Article article);
 
+
+	public abstract void remove(Integer id);
+
+
+	public abstract List<Article> queryAll(Article article);
+
+
+	public abstract void increaseHit(Integer id);
 }

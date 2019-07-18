@@ -53,5 +53,16 @@ public interface ArticleMapper {
 	 * int
 	 */
 	public int count(@Param("article") Article article);
+	
+	//根据主键查询
+	public Article selectByPrimaryKey(Integer id);
+	
+	//根据id 更新
+	public int updateByKey(Article article);
 
+
+	public void remove(Integer id);
+
+
+	public List<Article> queryAll(@Param("article") Article article);
 }

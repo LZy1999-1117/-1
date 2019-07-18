@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.bawei.cms.dao.ArticleMapper">
+<mapper namespace="com.lzy.cms.dao.ArticleMapper">
 
   <resultMap id="BaseResultMap" type="com.lzy.cms.domain.Article">
     <id column="id" jdbcType="INTEGER" property="id" />
@@ -265,7 +265,8 @@
     </if>
     <if test="article.hot != null">
     	AND b.hot = #{article.hot,jdbcType=BIT}
-    </if>    
+    </if>
+    
   </select>
   
   <select id="count" resultType="java.lang.Integer">
@@ -333,10 +334,43 @@
      <update id="countComments" parameterType="java.lang.Integer">
     update cms_article set comments=(select count(id) from blog_comment where blog=#{id,jdbcType=INTEGER}) where id = #{id,jdbcType=INTEGER}
     </update> -->
-
+  
+   <update id="updateByKey" parameterType="com.lzy.cms.domain.Article">
+    update cms_article
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null">
+        summary = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+      	content = #{content,jdbcType=CLOB},
+      </if>
+      <if test="channel != null">
+      	channel_id = #{channel.id,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        category_id = #{category.id,jdbcType=VARCHAR},
+      </if>
+      <if test="hits != null">
+        hits = #{hits,jdbcType=INTEGER},
+      </if>
+      <if test="updated != null">
+        updated = #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="picture != null">
+        picture = #{picture,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
   
     <update id="increaseHit" parameterType="java.lang.Integer">
     update cms_article set hits=hits+1 where id = #{id,jdbcType=INTEGER}
     </update>
-
+    
+    <delete id="remove" parameterType="int">
+    	delete from cms_article where id = #{id}
+    </delete>
 </mapper>

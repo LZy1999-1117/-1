@@ -19,12 +19,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.lzy.cms.web.Constant;
+import com.lzy.cms.web.forms.UserForm;
 import com.lzy.cms.core.CMSRuntimeException;
 import com.lzy.cms.domain.User;
 import com.lzy.cms.service.PassportService;
 import com.lzy.cms.utils.AssertUtil;
-import com.lzy.cms.web.Constant;
-import com.lzy.cms.web.forms.UserForm;
 
 /**
  * 说明:登录注册页面

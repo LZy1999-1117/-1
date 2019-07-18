@@ -45,4 +45,56 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 	
 	
+	public List<Article> selects( Article article, LinkedHashMap<String, Boolean> orders,Page page){
+		
+		return articleMapper.selects(article, orders, page);
+		
+	}
+
+
+	@Override
+	public int count(Article article) {
+		return articleMapper.count(article);
+	}
+
+	//根据id 查询文章
+	@Override
+	public Article selectByPrimaryKey(Integer id) {
+		
+		return articleMapper.selectByPrimaryKey(id);
+	}
+
+	//根据id 更新文章
+	@Override
+	public int updateByKey(Article article) {
+		// TODO Auto-generated method stub
+		return articleMapper.updateByKey(article);
+	}
+
+
+	@Override
+	public void saveBlog(Article article) {
+		articleMapper.save(article);;
+	}
+
+
+	@Override
+	public void remove(Integer id) {
+		articleMapper.remove(id);
+	}
+
+
+	@Override
+	public List<Article> queryAll(Article article) {
+		return articleMapper.queryAll(article);
+	}
+
+
+	@Override
+	public void increaseHit(Integer id) {
+		articleMapper.increaseHit(id);
+	}
+	
+	
+	
 }
