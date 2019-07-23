@@ -46,10 +46,19 @@
 				<div class="text-center">
 					作者：${blog.author.nickname}&nbsp;&nbsp;&nbsp;&nbsp;
 					浏览：${blog.hits}
+					关键字 : ${blog.keywords}
+					 
 					<input type="hidden" id="articleId" value="${blog.id }"
 					<!--btn-success  -->
 					 <a id="mir" class="btn btn-success" href="javascript:void(0)" style="color:#000;">
         				<span id="sctxt">收藏</span><i class="glyphicon glyphicon-align-left"></i>
+    				 </a>
+				</div>
+				<div><br></div>
+				<div class="text-center">
+					原文链接 :
+					 <a id="mir" class="btn btn-success" href="	${blog.orglink} " style="color:#000;">
+        					 ${blog.orglink}
     				 </a>
 				</div>
 				<hr/>

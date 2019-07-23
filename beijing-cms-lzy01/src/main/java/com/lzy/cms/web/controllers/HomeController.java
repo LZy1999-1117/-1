@@ -95,6 +95,8 @@ public class HomeController {
 	}
 
 	
+	
+	// 传个文章的 ID 进行查询 然后  进行存储      然后  在浏览量 进行++
 	@RequestMapping("/article")
 	public String Aarticle(Integer id,ModelMap map){
 		Article ac=articleService.selectByPrimaryKey(id);

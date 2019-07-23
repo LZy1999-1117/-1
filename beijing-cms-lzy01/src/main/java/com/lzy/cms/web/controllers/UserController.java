@@ -78,6 +78,7 @@ public class UserController {
 		article.setAuthor(user);
 		System.out.println(user);
 		PageHelper.startPage(page, 3);
+		
 		List<Article> articles=articleService.queryAll(article);
 		System.out.println(articles);
 		

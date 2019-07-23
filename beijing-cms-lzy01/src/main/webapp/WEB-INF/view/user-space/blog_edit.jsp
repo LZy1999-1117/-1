@@ -62,10 +62,17 @@
 				    		<span class="red"></span>
 				    	</p>
 				    	<p>
-				    		<textarea name="content" rows="30"  class="form-control" placeholder="摘要">${blog.content }</textarea>
+				    		<textarea name="keywords"   class="form-control" placeholder="关键字">${blog.keywords }</textarea>
 				    		<span class="red"></span>
 				    	</p>
-				    	
+				    	<p>
+				    		<textarea name="orglink"  class="form-control" placeholder="原文链接">${blog.orglink }</textarea>
+				    		<span class="red"></span>
+				    	</p>
+				    	<p>
+				    		<textarea name="content" rows="30"  class="form-control" placeholder="内容">${blog.content }</textarea>
+				    		<span class="red"></span>
+				    	</p>
 				    	<p>
 				    		<textarea name="summary" rows="3" class="form-control" placeholder="摘要">${blog.summary }</textarea>
 				    		<span class="red"></span>
