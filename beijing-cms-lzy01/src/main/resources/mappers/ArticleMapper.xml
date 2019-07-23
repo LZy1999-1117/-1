@@ -338,5 +338,57 @@
     <update id="increaseHit" parameterType="java.lang.Integer">
     update cms_article set hits=hits+1 where id = #{id,jdbcType=INTEGER}
     </update>
-
+	
+	
+	<update id="updateByKey" parameterType="com.lzy.cms.domain.Article">
+		update cms_article
+		<set>
+			<if test="title != null">
+	      title=#{title,jdbcType=VARCHAR},
+	      </if>
+	      <if test="summary != null">
+	       summary= #{summary,jdbcType=VARCHAR},
+	      </if>
+	      <if test="picture != null">
+	       picture= #{picture,jdbcType=VARCHAR},
+	      </if>
+	      <if test="channel != null">
+	        channel_id=#{channel.id,jdbcType=VARCHAR},
+	      </if>
+	      <if test="category != null">
+	       category_id= #{category.id,jdbcType=VARCHAR},
+	      </if>
+	      <if test="author != null">
+	       author= #{author.id,jdbcType=INTEGER},
+	      </if>
+	      <if test="hits != null">
+	       hits= #{hits,jdbcType=INTEGER},
+	      </if>
+	      <if test="hot != null">
+	        hot=#{hot,jdbcType=BIT},
+	      </if>
+	      <if test="status != null">
+	      status=  #{status,jdbcType=INTEGER},
+	      </if>
+	      <if test="deleted != null">
+	       deleted= #{deleted,jdbcType=BIT},
+	      </if>
+	      <if test="created != null">
+	       created= #{created,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="updated != null">
+	       updated= #{updated,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="content != null">
+	       content= #{content,jdbcType=CLOB},
+	      </if>
+		</set>
+		<where>
+			id=#{id,jdbcType=INTEGER}
+		</where>
+	</update>
+	
+	<delete id="remove" parameterType="java.lang.Integer" >
+		delete from cms_article where id=#{id,jdbcType=INTEGER}
+	</delete>
 </mapper>

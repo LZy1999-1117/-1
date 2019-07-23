@@ -47,9 +47,71 @@ public class User implements Serializable {
 	/**更新时间*/
 	private Date updated;
 	
+	 
+	
+	// 手机号
+	private String phone;
+	
+	//地区
+	private String address;
+	
+	//星座
+	private String star;
+	
+	//座右铭
+	
+	private String  motto;
+	
+	
+	//邮箱
+	private String email;
+	
+	
 	
 	//------------------------------------------------------------------------
 	
+	
+	
+	public String getPhone() {
+		return phone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getStar() {
+		return star;
+	}
+
+	public void setStar(String star) {
+		this.star = star;
+	}
+
+	public String getMotto() {
+		return motto;
+	}
+
+	public void setMotto(String motto) {
+		this.motto = motto;
+	}
+
 	public User() {
 		super();
 	}

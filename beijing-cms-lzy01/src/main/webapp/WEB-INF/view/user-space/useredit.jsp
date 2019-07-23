@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>发布博客</title>
+    <title>个人设置</title>
 	<script type="text/javascript" src="/libs/jquery/jquery.min.js"></script>
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" href="/libs/bootstrap/css/bootstrap.min.css"/>
@@ -39,43 +39,48 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-3">
-				<jsp:include page="/WEB-INF/inc/my_left.jsp"><jsp:param value="blog" name="module"/></jsp:include>
+				<jsp:include page="/WEB-INF/inc/my_left.jsp"><jsp:param value="user" name="module"/></jsp:include>
 			</div>
 			<div class="col-md-9">
 				<div class="panel panel-default">
 				  <div class="panel-body">
-				    	<h1>发布博客</h1>
+				    	<h1>个人设置</h1>
 				    	<hr/>
 				    	
-				    	<form action="/my/blog/save" enctype="multipart/form-data" method="post" >
-				    	<input type="hidden" value="${blog.id}" name="id">
+				    	<form action="/my/user/save" enctype="multipart/form-data" method="post" >
+				    	<input type="hidden" value="${user.id}" name="id">
 				    	<p align="center" class="red"> </p>
+				    	
 				    	<p>
-				    		<span>频道</span>
-				    		<select id="channel" name="channel.id"></select>
-				    		
-				    		<span>种类</span>
-				    		<select id="category" name="category.id"></select>
-				    	</p>
-				    	<p>
-				    		<input name="title" value="${blog.title}" class="form-control" placeholder="博客标题"/>
+				    		<input type="text" value="${user.username}" class="form-control" placeholder="用户名" name="username"/ >
 				    		<span class="red"></span>
 				    	</p>
 				    	<p>
-				    		<textarea name="content" rows="30"  class="form-control" placeholder="摘要">${blog.content }</textarea>
+				    		<input  type="text" value="${user.nickname}" class="form-control" placeholder="姓名" name="nickname" / >
+				    		<span class="red"></span>
+				    	</p>
+				    	<p>
+				    		<input type="text" value="${user.phone}" class="form-control" placeholder="电话" name="phone" / >
+				    		<span class="red"></span>
+				    	</p>
+				    	<p>
+				    		<input type="text"  value="${user.email}" class="form-control" placeholder="邮箱" name="email" / >
 				    		<span class="red"></span>
 				    	</p>
 				    	
 				    	<p>
-				    		<textarea name="summary" rows="3" class="form-control" placeholder="摘要">${blog.summary }</textarea>
+				    		<input type="text"  value="${user.address}" class="form-control" placeholder="地区" name="address" / >
+				    		<span class="red"></span>
+				    	</p>
+				    	<p>
+				    		<input type="text"  value="${user.star}" class="form-control" placeholder="星座" name="star" / >
 				    		<span class="red"></span>
 				    	</p>
 				    	
-				    	
-				    	<p>上传封面：<input type="file" name="file"/>
-					  
+				    	<p>
+				    		<input type="text"  value="${user.motto}" class="form-control" placeholder="座右铭" name="motto" / >
+				    		<span class="red"></span>
 				    	</p>
-				    	
 				    	<p>
 				    		<button type="submit" class="btn btn-info btn-block">保存</button> 
 				    	</p>

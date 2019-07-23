@@ -43,6 +43,42 @@ public class ArticleServiceImpl implements ArticleService {
 		}
 		return articles;
 	}
+
+	@Override
+	public Article selectByPrimaryKey(Integer id) {
+		// TODO Auto-generated method stub
+		return articleMapper.selectByPrimaryKey(id);
+	}
+
+	@Override
+	public void increaseHit(Integer id) {
+		// TODO Auto-generated method stub
+		articleMapper.increaseHit(id);
+	}
+
+	@Override
+	public List<Article> queryAll(Article article) {
+		// TODO Auto-generated method stub
+		return articleMapper.queryAll(article);
+	}
+
+	@Override
+	public void updateByKey(Article article) {
+		// TODO Auto-generated method stub
+		articleMapper.updateByKey(article);
+	}
+
+	@Override
+	public void save(Article article) {
+		// TODO Auto-generated method stub
+		articleMapper.save(article);
+	}
+
+	@Override
+	public Integer remove(Integer id) {
+		// TODO Auto-generated method stub
+		return articleMapper.remove(id);
+	}
 	
 	
 }

@@ -28,6 +28,18 @@ public interface ArticleService {
 	 * List<Article>
 	 */
 	public abstract List<Article> gets(Article conditions, Page page, LinkedHashMap<String, Boolean> orders);
+
+	public abstract Article selectByPrimaryKey(Integer id);
+
+	public abstract void increaseHit(Integer id);
+
+	public abstract List<Article> queryAll(Article article);
+
+	public abstract void updateByKey(Article article);
+
+	public abstract void save(Article article);
+
+	public abstract Integer remove(Integer id);
 	
 
 }

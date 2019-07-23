@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -93,4 +94,12 @@ public class HomeController {
 		return "home";
 	}
 
+	
+	@RequestMapping("/article")
+	public String Aarticle(Integer id,ModelMap map){
+		Article ac=articleService.selectByPrimaryKey(id);
+		articleService.increaseHit(id);
+		map.put("blog", ac);
+		return "blog";
+	}
 }

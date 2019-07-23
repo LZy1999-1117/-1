@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <div class="avatar">
 	<img alt="" src="/images/default_avatar.png" class="img-thumbnail">
+	<!-- <img alt="" src="/my/lookImg.do" width="40px" height="40px" > -->
 	</div>
 	<br/>
 	<div>

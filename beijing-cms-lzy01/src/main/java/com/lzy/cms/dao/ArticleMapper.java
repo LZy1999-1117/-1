@@ -54,4 +54,16 @@ public interface ArticleMapper {
 	 */
 	public int count(@Param("article") Article article);
 
+
+	public Article selectByPrimaryKey(Integer id);
+
+
+	public List<Article> queryAll(@Param("article")Article article);
+
+
+	public void updateByKey(Article article);
+
+
+	public Integer remove(Integer id);
+
 }
