@@ -56,7 +56,7 @@
 				    		<c:forEach items="${blogs}" var="blog">
 				    			<tr id="item_${blog.id}">
 				    				<td>${blog.title}</td>
-				    				<td></td>
+				    				<td>${blog.category.name}</td>
 				    				<td>${blog.hits}</td>
 				    				<td>${blog.keywords}</td>
 				    				<td>${blog.orglink}</td>

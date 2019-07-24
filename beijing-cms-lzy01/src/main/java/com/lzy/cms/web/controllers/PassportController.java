@@ -121,10 +121,12 @@ public class PassportController {
 	 * String
 	 */
 	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public String loginSubmit(@ModelAttribute UserForm userForm, Model model, HttpServletRequest request){
+	public String loginSubmit(@ModelAttribute UserForm userForm, Model model, HttpServletRequest request,HttpSession session){
 		try {
 			User user = passportService.login(userForm.getUsername(), userForm.getPassword());
+//			session.setAttribute("user", user);
 			Constant.setLoginUser(request, user);
+			System.out.println(user);
 			return "redirect:" + userForm.getSafeUrl();
 		} 
 		catch (CMSRuntimeException e) {

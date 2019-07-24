@@ -16,12 +16,15 @@
     <result column="star" jdbcType="TIMESTAMP" property="star" />
     <result column="address" jdbcType="TIMESTAMP" property="address" />
     <result column="motto" jdbcType="TIMESTAMP" property="motto" />
+    <result column="picture" jdbcType="VARCHAR" property="picture" />
   </resultMap>
   
   <sql id="Base_Column_List">
-    id, username, password, nickname, birthday, gender, locked, created, updated,phone,star,address,motto
+    id, username, password, nickname, birthday, gender, locked, created, updated,phone,star,address,motto,picture
   </sql>
   
+  
+  <!-- 个人设置  查询  回显 -->
   <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -102,6 +105,8 @@
   
   
   
+  
+  <!-- 修改 个人设置 -->
   <update id="updateByd" parameterType="com.lzy.cms.domain.User">
   	
   	update cms_user 
@@ -137,4 +142,18 @@
   <select id="selectUserKey" parameterType="Integer" resultType="com.lzy.cms.domain.User">
   	select * from cms_user where id=#{id}
   </select>
+  
+  
+   <select id="commentsUser" parameterType="int" resultType="com.lzy.cms.domain.Comment" >
+	select  cc.id,cc.content,cc.displayTime,ca.title,cu.username as username from  cms_comment cc,cms_user  cu,cms_article ca where cc.blog_id=ca.id and cc.user_id=cu.id 
+  	and cc.user_id=#{0}
+  	<!-- select c.*,u.username as username,a.title as title 
+  		from cms_comment c , cms_user u ,cms_article a 
+  		where  c.user_id=u.id and a.id=c.blog_id and c.user_id=2 -->
+  </select>
+  
+  
+  <update id="upload" parameterType="com.lzy.cms.domain.User">
+  	update cms_user set picture=#{picture} where id=#{id}
+  </update>
 </mapper>

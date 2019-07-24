@@ -8,12 +8,14 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -29,8 +31,10 @@ import com.lzy.cms.core.Page;
 import com.lzy.cms.domain.Article;
 import com.lzy.cms.domain.Category;
 import com.lzy.cms.domain.Channel;
+import com.lzy.cms.domain.Comment;
 import com.lzy.cms.domain.User;
 import com.lzy.cms.service.ArticleService;
+import com.lzy.cms.service.CommentService;
 import com.lzy.cms.service.UserService;
 import com.lzy.cms.utils.FileUploadUtil;
 import com.lzy.cms.utils.PageHelpUtil;
@@ -51,14 +55,22 @@ public class UserController {
 	@Autowired
 	ArticleService articleService;
 	
-	@Autowired
+	@Resource(name="userService")
 	UserService userService;
 	
+	
+	
+	@Autowired
+	CommentService commentService;
+	
+	//跳到 CMS 主页面
 	@RequestMapping({"/", "/index", "/home"})
 	public String home(){
 		return "user-space/home";
 	}
 	
+	
+	//个人设置 进行回显
 	@RequestMapping({"/profile"})
 	public String profile(ModelMap map,HttpSession session){
 		User u = (User) session.getAttribute(Constant.LOGIN_USER);
@@ -69,20 +81,59 @@ public class UserController {
 	
 	
 	
+	// 上传 头像
+	@RequestMapping("/profile/avatar")
+	public String avatar(){
+		
+		return "user-space/avatar";
+		
+	}
 	
+	
+	// 进行上传  
+	@RequestMapping("/profile/upload")
+	public String upload(MultipartFile file,HttpServletRequest request,HttpSession session){
+		System.out.println("1");
+		System.out.println(file);
+		String upload = FileUploadUtil.upload(request, file);
+		System.out.println(upload);
+		User u = (User) session.getAttribute(Constant.LOGIN_USER);
+		System.out.println(u);
+		if(!upload.equals("")){
+			u.setPicture(upload);
+		}
+		System.out.println(u);
+		int flag=userService.upload(u);
+		return "user-space/home";
+		
+	}
+	
+	
+	// 我的文章 查询       
 	@RequestMapping("blogs")
 	public String blogs(HttpSession session,Model model,@RequestParam(required=false,defaultValue="1")Integer page){
+		
+		// 设置文章的实例对象
 		Article article = new Article();
 		
+		// 获取作用域的user 对象
 		User user = (User) session.getAttribute(Constant.LOGIN_USER);
+		//把 登陆的对象 存到   文章的  对象的字段里
 		article.setAuthor(user);
 		System.out.println(user);
+		
+		
+		//进行 分页   传当前页 和   每页几条数据
 		PageHelper.startPage(page, 3);
 		
+		
+		// 进行 文章 查询   动态sql  
 		List<Article> articles=articleService.queryAll(article);
 		System.out.println(articles);
 		
+		//  调用 pageInfo  
 		PageInfo<Article> pageInfo = new PageInfo<Article>(articles,3);
+		// 然后 调用 pageHelperUtil  工具类
 		String pageList = PageHelpUtil.page("blogs", pageInfo, null);
 		
 		model.addAttribute("blogs", articles);
@@ -92,6 +143,8 @@ public class UserController {
 	}
 	
 	
+	
+	// 进行  文章编辑回显
 	@RequestMapping("/blog/edit")
 	public String edit(Integer id,ModelMap map){
 		Article article = articleService.selectByPrimaryKey(id);
@@ -147,6 +200,8 @@ public class UserController {
 	public String */
 	
 	
+	
+	// 在我的文章页面 进行删除  方法
 	@RequestMapping("/blog/remove")
 	@ResponseBody
 	public Object remove(Integer id){
@@ -156,9 +211,31 @@ public class UserController {
 	
 	
 	
+	
+	//  修改个人设置
 	@RequestMapping("/user/save")
 	public String Usersave(User user,ModelMap map){
 		userService.updateByd(user);
 		return "redirect:/my/profile";
+	}
+	
+
+	
+	//  我的评论
+	@RequestMapping("/comments")
+	public String commentsUser(ModelMap map,HttpSession session,@RequestParam(required=false,defaultValue="1")Integer page){
+		User u = (User) session.getAttribute(Constant.LOGIN_USER);
+		System.out.println(u.getId()+"k");
+		Integer id = u.getId();
+		PageHelper.startPage(page, 3);
+		List<Comment> list=userService.commentsUser(id);
+		PageInfo<Comment> pageInfo = new PageInfo<Comment>(list, 3);
+		String pageList = PageHelpUtil.page("comments", pageInfo, null);
+		for (Comment comment : list) {
+			System.out.println(comment);
+		}
+		map.put("comments", list);
+		map.put("pageList", pageList);
+		return "/user-space/comments";
 	}
 }

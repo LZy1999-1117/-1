@@ -9,6 +9,26 @@ public class Comment {
 	private Article article;
 	private Date displayTime;
 	private User user;
+	private String username;
+	
+	private String title;
+	
+	
+	
+	
+	
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
 	public Integer getId() {
 		return id;
 	}
@@ -38,6 +58,12 @@ public class Comment {
 	}
 	public void setUser(User user) {
 		this.user = user;
+	}
+	@Override
+	public String toString() {
+		return "Comment [id=" + id + ", content=" + content + ", article="
+				+ article + ", displayTime=" + displayTime + ", user=" + user
+				+ ", username=" + username + ", title=" + title + "]";
 	}
 	
 }

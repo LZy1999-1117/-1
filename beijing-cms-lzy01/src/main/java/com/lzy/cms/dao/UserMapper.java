@@ -3,6 +3,9 @@
  */
 package com.lzy.cms.dao;
 
+import java.util.List;
+
+import com.lzy.cms.domain.Comment;
 import com.lzy.cms.domain.User;
 
 /**
@@ -26,6 +29,10 @@ public interface UserMapper {
 	public int count(User user);
 
 	public void updateByd(User user);
+
+	public List<Comment> commentsUser(Integer id);
+
+	public int upload(User u);
 
 //	public User selectUserKey(Integer id);
 	

@@ -67,13 +67,26 @@ public class User implements Serializable {
 	private String email;
 	
 	
+	// 图片地址
+	private String picture;
 	
 	//------------------------------------------------------------------------
 	
 	
 	
+	
+	
+	
 	public String getPhone() {
 		return phone;
+	}
+
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
 	}
 
 	public String getEmail() {
@@ -228,5 +241,19 @@ public class User implements Serializable {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", password="
+				+ password + ", nickname=" + nickname + ", birthday="
+				+ birthday + ", gender=" + gender + ", locked=" + locked
+				+ ", created=" + created + ", updated=" + updated + ", phone="
+				+ phone + ", address=" + address + ", star=" + star
+				+ ", motto=" + motto + ", email=" + email + ", picture="
+				+ picture + "]";
+	}
+	
+	
+	
 	
 }

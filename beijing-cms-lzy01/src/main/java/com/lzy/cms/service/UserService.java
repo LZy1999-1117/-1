@@ -1,5 +1,8 @@
 package com.lzy.cms.service;
 
+import java.util.List;
+
+import com.lzy.cms.domain.Comment;
 import com.lzy.cms.domain.User;
 
 
@@ -24,4 +27,8 @@ public interface UserService {
 //	public abstract User selectUserKey(Integer id);
 
 	public abstract User selectById(Integer id);
+
+	public abstract List<Comment> commentsUser(Integer id);
+
+	public abstract int upload(User u);
 }

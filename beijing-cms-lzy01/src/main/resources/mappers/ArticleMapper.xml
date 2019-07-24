@@ -81,6 +81,23 @@
     id, title, summary, picture, channel_id, category_id, user_id, hits, hot, status, deleted, created, updated, content
   </sql>
   
+  
+  <!-- 进行 文章发布     需要存储
+  			//点击量 第一次
+			article.setHits(0);
+			/**是否热门（是否上头条）**/
+			article.setHot(true);
+			/**状态：0:审核不通过，1:审核通过**/
+			article.setStatus(1);
+			/**是否删除：true-删除，false-不删除**/
+			article.setDeleted(false);
+			/**创建时间**/
+			article.setCreated(new Date());
+			// 设置文章的作者
+			User user = (User) session.getAttribute(Constant.LOGIN_USER);
+			article.setAuthor(user);
+			articleService.save(article);
+   -->
   <insert id="save" parameterType="com.lzy.cms.domain.Article">
     insert into cms_article
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -179,7 +196,7 @@
       </if>
     </trim>
   </insert>
-  <!-- 根据主键查询 -->
+  <!-- 根据主键查询   文章查询  (编辑)  -->
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
 	SELECT 
 		b.id, b.title, b.picture, b.summary, b.content, b.channel_id, b.category_id, b.user_id, b.hits, b.hot, b.created, b.updated, 
@@ -247,6 +264,8 @@
     </if>
   </select>
   
+  
+  <!--  全部文章查询    动态sql     根据 作者 id   -->
   <select id="queryAll" parameterType="article" resultType="article">
 	SELECT 
 		b.id, b.title, b.picture, b.summary, b.channel_id, b.category_id, b.user_id, b.hits, b.hot,b.status,b.deleted, b.created, b.updated, 
@@ -355,6 +374,8 @@
     </update>
 	
 	
+	
+	<!-- 进行修改文章   方法 -->
 	<update id="updateByKey" parameterType="com.lzy.cms.domain.Article">
 		update cms_article
 		<set>
@@ -409,7 +430,12 @@
 		</where>
 	</update>
 	
+	
+	<!-- 进行 文章删除  文章的id  -->
 	<delete id="remove" parameterType="java.lang.Integer" >
 		delete from cms_article where id=#{id,jdbcType=INTEGER}
 	</delete>
+	
+	
+	<select id=""></select>
 </mapper>

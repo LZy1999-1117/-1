@@ -3,11 +3,14 @@
  */
 package com.lzy.cms.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
 import com.lzy.cms.dao.UserMapper;
+import com.lzy.cms.domain.Comment;
 import com.lzy.cms.domain.User;
 import com.lzy.cms.service.UserService;
 
@@ -62,6 +65,19 @@ public class UserServiceImpl implements UserService {
 	public User selectById(Integer id) {
 		// TODO Auto-generated method stub
 		return userMapper.selectById(id);
+	}
+
+	@Override
+	public List<Comment> commentsUser(Integer id) {
+		// TODO Auto-generated method stub
+		System.out.println(id+"s");
+		return userMapper.commentsUser(id);
+	}
+
+	@Override
+	public int upload(User u) {
+		// TODO Auto-generated method stub
+		return userMapper.upload(u);
 	}
 
 	

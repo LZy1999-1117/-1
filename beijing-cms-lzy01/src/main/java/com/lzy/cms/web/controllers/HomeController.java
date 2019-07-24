@@ -18,8 +18,10 @@ import com.lzy.cms.core.Page;
 import com.lzy.cms.domain.Article;
 import com.lzy.cms.domain.Category;
 import com.lzy.cms.domain.Channel;
+import com.lzy.cms.domain.Comment;
 import com.lzy.cms.domain.Slide;
 import com.lzy.cms.service.ArticleService;
+import com.lzy.cms.service.CommentService;
 import com.lzy.cms.service.SlideService;
 
 /**
@@ -38,6 +40,10 @@ public class HomeController {
 	
 	@Resource
 	private SlideService slideService;
+	
+	
+	@Resource
+	private CommentService commentservice;
 	
 	@RequestMapping({"/", "/index", "/home"})
 	public String home(
@@ -101,6 +107,8 @@ public class HomeController {
 	public String Aarticle(Integer id,ModelMap map){
 		Article ac=articleService.selectByPrimaryKey(id);
 		articleService.increaseHit(id);
+		List<Comment> comments=commentservice.SelectKeyComment(id);
+		map.put("comments", comments);
 		map.put("blog", ac);
 		return "blog";
 	}

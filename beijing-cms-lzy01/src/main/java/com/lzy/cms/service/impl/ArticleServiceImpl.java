@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.lzy.cms.core.Page;
 import com.lzy.cms.dao.ArticleMapper;
 import com.lzy.cms.domain.Article;
+import com.lzy.cms.domain.Comment;
 import com.lzy.cms.service.ArticleService;
 
 /**
@@ -79,6 +80,7 @@ public class ArticleServiceImpl implements ArticleService {
 		// TODO Auto-generated method stub
 		return articleMapper.remove(id);
 	}
-	
+
+
 	
 }

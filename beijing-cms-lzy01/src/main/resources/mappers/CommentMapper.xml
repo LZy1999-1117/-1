@@ -36,4 +36,17 @@
       </if>
     </trim>
   </insert>
+  
+  
+  
+  <select id="SelectKeyComment" parameterType="java.lang.Integer" resultType="com.lzy.cms.domain.Comment">
+  	select c.*,u.username as username from cms_comment c left join cms_user u on c.user_id=u.id where c.blog_id=#{id,jdbcType=INTEGER}
+
+  </select>
+  
+  
+  <select id="commentsUser" parameterType="Integer" resultType="com.lzy.cms.domain.Comment" >
+  	select  cc.id,cc.content,cc.displayTime,ca.title,cu.username from  cms_comment cc,cms_user  cu,cms_article ca where cc.blog_id=ca.id and cc.user_id=cu.id 
+  	and cc.user_id=#{id,jdbcType=INTEGER}
+  </select>
 </mapper>

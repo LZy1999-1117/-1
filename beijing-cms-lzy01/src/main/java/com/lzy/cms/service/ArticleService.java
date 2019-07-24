@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.lzy.cms.core.Page;
 import com.lzy.cms.domain.Article;
+import com.lzy.cms.domain.Comment;
 import com.lzy.cms.domain.User;
 
 /**

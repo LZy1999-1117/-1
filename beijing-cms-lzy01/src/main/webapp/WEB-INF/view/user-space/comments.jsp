@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
@@ -42,6 +44,32 @@
 				<div class="panel panel-default">
 				  <div class="panel-body">
 				    	<h1>我的评论</h1>
+				    	<table class="table table-striped table-bordered table-hover">
+				    		<thead>
+				    			<tr class="info">
+				    				<th>编号</th>
+				    				<th>标题</th>
+				    				<th>内容</th>
+				    				<th>时间</th>
+				    				<th>作者</th>
+				    				<th>操作</th>
+				    			</tr>
+				    		</thead>
+				    		<tbody class="">
+				    		<c:forEach items="${comments}" var="comment">
+				    			<tr id="item_${comment.id}">
+				    				<td>${comment.id}</td>
+				    				<td>${comment.title}</td>
+				    				<td>${comment.content}</td>
+				    				<td>${comment.username}</td>
+									  <td><fmt:formatDate value="${comment.displayTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+				    				<td><a class="btn btn-primary" href="/my/blog/edit?id=${blog.id}" title="编辑"><span class="glyphicon glyphicon-edit">编辑</span></a>&nbsp;&nbsp;
+				    				<a class="btn btn-success" onclick="removeBlog(${blog.id});" title="删除"><span class="glyphicon glyphicon-remove">删除</span></a></td>
+				    			</tr>
+				    		</c:forEach>
+				    		</tbody>
+				    	</table>
+				    	${pageList}
 				    	<hr/>
 				  </div>
 				</div>

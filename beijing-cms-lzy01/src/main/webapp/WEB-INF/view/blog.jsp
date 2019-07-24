@@ -79,16 +79,16 @@
 						    </a>
 						  </div>
 						  <div class="media-body">
-						    <h4 class="media-heading">${comment.author.nickname}：</h4>
+						    <h4 class="media-heading">${comment.username}：</h4>
 						    <p>${comment.content}</p>
-						    <p>评论时间：<fmt:formatDate value="${comment.diplayTime}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
+						    <p>评论时间：<fmt:formatDate value="${comment.displayTime}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
 						  </div>
 						</div>
 					</c:forEach>
 				</div>
 				<div>
 					<form id="comment" name="comment" method="post">
-						<input type="hidden" name="blog.id" id="blogId" value="${ blog.id}"/>
+						<input type="hidden" name="article.id" id="blogId" value="${ blog.id}"/>
 						<textarea id="content" name="content" cols="3" class="form-control" placeholder="${_LOGIN_USER_.nickname}发表评论"></textarea>
 						<button type="submit" class="btn btn-info btn-block">发表</button>
 					</form>
@@ -152,8 +152,9 @@
 					data:$(this).serialize(),
 					/* error: function(){alert('发表失败');}, */
 					success:function(data){
+						
 						console.log(data);
-						if(data.status){
+						 if(data.status){
 							alert(data.msg);
 							var comments = $("#comments").html();
 							$("#comments").html(template.replace("{{comment_content}}", content) + comments);
