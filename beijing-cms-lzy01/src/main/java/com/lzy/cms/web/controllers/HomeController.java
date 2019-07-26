@@ -20,6 +20,8 @@ import com.lzy.cms.domain.Category;
 import com.lzy.cms.domain.Channel;
 import com.lzy.cms.domain.Comment;
 import com.lzy.cms.domain.Slide;
+import com.lzy.cms.domain.special;
+import com.lzy.cms.service.AdminService;
 import com.lzy.cms.service.ArticleService;
 import com.lzy.cms.service.CommentService;
 import com.lzy.cms.service.SlideService;
@@ -44,6 +46,10 @@ public class HomeController {
 	
 	@Resource
 	private CommentService commentservice;
+	
+	
+	@Resource
+	private AdminService adminservice;
 	
 	@RequestMapping({"/", "/index", "/home"})
 	public String home(
@@ -97,6 +103,8 @@ public class HomeController {
 		}
 		model.addAttribute("category", category);
 		
+		List<special> specialAll = adminservice.specialAll();
+		model.addAttribute("specialAll", specialAll);
 		return "home";
 	}
 

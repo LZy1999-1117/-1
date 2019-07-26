@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lzy.cms.dao.AdminMapper">
+	
+	
+		<resultMap type="com.lzy.cms.domain.special" id="specialMap">
+			<id property="id" column="id"/>
+			<result property="title" column="title"/>
+			<result property="abstracts" column="abstracts"/>
+			<result property="created" column="created"/>
+			<collection property="artlist" column="id" ofType="com.lzy.cms.domain.Article" select="selectArticle"></collection>
+		</resultMap>
+	
+	
+	
+	
+	<select id="specialAll" resultMap="specialMap">
+		select * from cms_special
+	</select>
+	
+	<select id="selectArticle" resultType="com.lzy.cms.domain.Article" parameterType="int">
+		
+			select ca.id,ca.title,ca.created from cms_article ca
+				LEFT JOIN cms_user cu on cu.id=ca.user_id
+				LEFT JOIN cms_special_article csa on csa.aid=ca.id
+				LEFT JOIN cms_special cs on csa.sid=cs.id
+				where csa.sid=#{0}	
+			
+	</select>
+	
+	
+	<select id="articleAll"  resultType="com.lzy.cms.domain.Article" parameterType="int">
+				select ca.id,ca.title,ca.created from cms_article ca
+				LEFT JOIN cms_user cu on cu.id=ca.user_id
+				LEFT JOIN cms_special_article csa on csa.aid=ca.id
+				LEFT JOIN cms_special cs on csa.sid=cs.id
+				where csa.sid=#{0}	
+	</select>
+	
+	
+	<update id="articleByd" parameterType="map">
+		update cms_special_article set sid=#{sid} where aid=#{aid}
+	</update>
+</mapper>

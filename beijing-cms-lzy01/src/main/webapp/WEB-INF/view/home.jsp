@@ -140,7 +140,65 @@
 						</ol>
 					</div>
 				</div>
+				
+				<div><br></div>
+				<div><br></div>
+				<div><br></div>
+				<div><br></div>
+				<div class="card">
+					<div class="card-body">
+						<ol>
+							<c:forEach items="${specialAll}" var="specialAll">
+							<p class="text-truncate"><a href="/article/${specialAll.id}">${specialAll.title}</a></p>
+							<br>	
+							<li>${specialAll.abstracts}</li>
+							<br>	
+							<c:forEach items="${specialAll.artlist }" var="artlist">
+								<ol>
+									<font color="red"><li>&nbsp;&nbsp;&nbsp;&nbsp;${artlist.title}</li></font>
+								</ol>
+							</c:forEach>
+							</c:forEach>
+						</ol>
+					</div>
+				</div>
 			</div>
+	
+			
+			<%-- 
+			<div class="col-md-3">
+				<div class="card">
+					<div class="card-body">
+						<ol>
+							<c:forEach items="${specialAll}" var="specialAll">
+							<li class="text-truncate"><a href="/article/${specialAll.id}">${specialAll.title}</a></li>
+							<li>${specialAll.abstracts}</li>
+							</c:forEach>
+						</ol>
+					</div>
+				</div>
+			</div> --%>
+			
+			<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-4 column">
+		</div>
+		<div class="col-md-4 column">
+		</div>
+		<div class="col-md-4 column">
+			<h2>
+				Heading
+			</h2>
+			<p>
+				Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+			</p>
+			<p>
+				 <a class="btn" href="#">View details »</a>
+			</p>
+		</div>
+	</div>
+</div>
+			
 		</div>
 	</div>
 	
