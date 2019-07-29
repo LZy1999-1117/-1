@@ -3,10 +3,12 @@
  */
 package com.liuzhongyuan.cms.service.impl;
 
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
@@ -60,6 +62,29 @@ public class ArticleServiceImpl implements ArticleService {
 	public List<Article> queryAll(Article article) {
 		// TODO Auto-generated method stub
 		return articleMapper.queryAll(article);
+	}
+
+	@Override
+	public void blogSaveOrUpdate(Article article, HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		if(article.getId()!=null){
+			
+		}else{
+			//发布方法  设置 article 对象中没有的变量值
+			
+			//点击量 第一次
+			article.setHits(0);
+			/**是否热门（是否上头条）**/
+			article.setHot(true);
+			/**状态：0:审核不通过，1:审核通过**/
+			article.setStatus(1);
+			/**是否删除：true-删除，false-不删除**/
+			article.setDeleted(false);
+			/**创建时间**/
+			article.setCreated(new Date());
+			article.setType(1);
+			articleMapper.save(article);
+		}
 	}
 	
 	

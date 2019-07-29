@@ -6,6 +6,7 @@ package com.liuzhongyuan.cms.domain;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.criteria.CriteriaBuilder.In;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -66,12 +67,24 @@ public class Article implements Serializable {
 	private Date updated;
 
 	
+	// 类型
+	private Integer type;
 	//---------------------------------------------------------------------
 
+	
+	
 	public Article() {
 		super();
 	}
 	
+	public Integer getType() {
+		return type;
+	}
+
+	public void setType(Integer type) {
+		this.type = type;
+	}
+
 	public Article(Integer id) {
 		super();
 		this.id = id;

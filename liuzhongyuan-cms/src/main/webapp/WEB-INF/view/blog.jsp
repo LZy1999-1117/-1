@@ -54,7 +54,41 @@
 				</div>
 				<hr/>
 				<div class="content">
-					${blog.content}
+					
+						<!-- 幻灯片 -->
+						<c:if test="${not empty pictures}">
+						<div id="carouselExampleIndicators" class="carousel picture" data-ride="carousel">
+						<ol class="carousel-indicators">
+						 	<c:forEach items="${pictures}" var="picture" varStatus="idx">
+						 	
+						   		 <li data-target="#carouselExampleIndicators" data-picture-to="${idx.count }"></li>
+						
+							 </c:forEach>
+						   </ol>
+						  <div class="carousel-inner">
+						  	<c:forEach items="${pictures}" var="picture" varStatus="idx">
+							    <div class="carousel-item ${idx.index==0 ? 'active' : ''}">
+							      <img class="d-block w-100" src="${picture.photo}" alt="${picture.content}">
+							      <div class="carousel-caption d-none d-md-block">
+								    <h5>${picture.content}</h5>
+								  </div>
+							    </div>
+						  	</c:forEach>
+						  </div>
+						  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+						    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						    <span class="sr-only">Previous</span>
+						  </a>
+						  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+						    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+						    <span class="sr-only">Next</span>
+						  </a>
+						</div>
+						</c:if>
+					
+					<%-- <c:otherwise>
+						${blog.content}
+					</c:otherwise> --%>
 				</div>
 				<div class="text-right">发布时间：<fmt:formatDate value="${blog.created}" pattern="yyyy-MM-dd HH:mm:ss"/></div>
 				

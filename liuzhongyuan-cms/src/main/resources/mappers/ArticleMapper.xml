@@ -15,6 +15,8 @@
     <result column="deleted" property="deleted" jdbcType="BIT"/>
     <result column="created" property="created" jdbcType="TIMESTAMP"/>
     <result column="updated" property="updated" jdbcType="TIMESTAMP"/>
+    <result column="type" property="type" jdbcType="INTEGER"/>
+    
     
     <result column="author_id" property="author.id" jdbcType="INTEGER"/>
     <result column="author_nickname" property="author.nickname" jdbcType="VARCHAR"/>
@@ -24,7 +26,7 @@
     
     <result column="category_id" property="category.id" jdbcType="INTEGER"/>
     <result column="category_name" property="category.name" jdbcType="VARCHAR"/>
-    
+ 
     <!-- 多对一查询自动映射实体 
     <association property="channel">
     	<id column="channel_id" property="id" jdbcType="INTEGER"/>
@@ -72,7 +74,7 @@
   </sql>
   
   <sql id="Base_Column_List">
-    id, title, summary, picture, channel_id, category_id, user_id, hits, hot, status, deleted, created, updated
+    id, title, summary, picture, channel_id, category_id, user_id, hits, hot, status, deleted, created, updated,type
   </sql>
   <sql id="Base_Column_Lob">
     id, title, summary, picture, channel_id, category_id, user_id, hits, hot, status, deleted, created, updated, content
@@ -120,6 +122,9 @@
       <if test="content != null">
         content,
       </if>
+      <if test="type != null">
+        type,
+      </if>
     </trim>
  
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -161,6 +166,9 @@
       </if>
       <if test="content != null">
         #{content,jdbcType=CLOB},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>

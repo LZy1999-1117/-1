@@ -5,6 +5,7 @@ package com.liuzhongyuan.cms.web.controllers;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,12 +21,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.liuzhongyuan.cms.core.Page;
 import com.liuzhongyuan.cms.domain.Article;
 import com.liuzhongyuan.cms.domain.Category;
 import com.liuzhongyuan.cms.domain.Channel;
+import com.liuzhongyuan.cms.domain.Picture;
 import com.liuzhongyuan.cms.domain.User;
 import com.liuzhongyuan.cms.service.ArticleService;
 import com.liuzhongyuan.cms.utils.FileUploadUtil;
@@ -68,5 +72,45 @@ public class UserController {
 		List<Article> list=articleService.queryAll(article);
 		map.put("blogs", list);
 		return "/user-space/blog_list";
+	}
+	
+	
+	@RequestMapping("/blog/edit")
+	public String edit(){
+		return "/user-space/pictureupload";
+	}
+	
+	
+	
+	@RequestMapping("/blog/save")
+	public String save(Article article,ModelMap map,MultipartFile file,MultipartFile[] photos,String[] desc,HttpServletRequest request){
+		
+		ArrayList<Picture> picturesList = new ArrayList<Picture>();
+		
+		for (int i = 0; i < desc.length; i++) {
+			Picture picture = new Picture();
+			String upload = FileUploadUtil.upload(request,photos[i]);
+			if(!upload.equals("")){
+				picture.setPhoto(upload);
+			}
+			if(!desc.equals("")){
+				picture.setContent(desc[i]);
+			}
+			picturesList.add(picture);
+		}
+		
+		String upload = FileUploadUtil.upload(request,file);
+		if(!upload.equals("")){
+			article.setPicture(upload);
+		}
+		
+		if(picturesList!=null){
+			article.setContent(JSON.toJSONString(picturesList));
+		}
+		User user = (User) request.getSession().getAttribute(Constant.LOGIN_USER);
+		article.setAuthor(user);
+		articleService.blogSaveOrUpdate(article,request);
+		
+		return "/user-space/home";
 	}
 }

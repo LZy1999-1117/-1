@@ -3,6 +3,8 @@ package com.liuzhongyuan.cms.service;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.ibatis.annotations.Param;
 
 import com.liuzhongyuan.cms.core.Page;
@@ -34,6 +36,9 @@ public interface ArticleService {
 	public abstract void increaseHit(Integer id);
 
 	public abstract List<Article> queryAll(Article article);
+
+	public abstract void blogSaveOrUpdate(Article article,
+			HttpServletRequest request);
 	
 
 }
