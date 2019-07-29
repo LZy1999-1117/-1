@@ -33,6 +33,7 @@ import com.lzy.cms.domain.Category;
 import com.lzy.cms.domain.Channel;
 import com.lzy.cms.domain.Comment;
 import com.lzy.cms.domain.User;
+import com.lzy.cms.metas.Gender;
 import com.lzy.cms.service.ArticleService;
 import com.lzy.cms.service.CommentService;
 import com.lzy.cms.service.UserService;
@@ -214,7 +215,9 @@ public class UserController {
 	
 	//  修改个人设置
 	@RequestMapping("/user/save")
-	public String Usersave(User user,ModelMap map){
+	public String Usersave(User user,ModelMap map,String sex){
+		Gender gender=Gender.valueOf(sex);
+		user.setGender(gender);
 		userService.updateByd(user);
 		return "redirect:/my/profile";
 	}

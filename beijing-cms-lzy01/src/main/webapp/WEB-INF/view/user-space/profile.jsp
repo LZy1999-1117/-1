@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
@@ -55,10 +57,19 @@
 				    		<input  type="text" value="${user.nickname}" class="form-control" placeholder="姓名" name="nickname" / >
 				    		<span class="red"></span>
 				    	</p>
+				    	
+				    	<p>
+				    		性别 : &nbsp;&nbsp;&nbsp;&nbsp;
+				    		<input type="radio" value="FAMALE" name="sex" <c:if test="${user.gender.name()=='FAMALE' }">checked="checked"</c:if>>女士
+				    		&nbsp;&nbsp;&nbsp;&nbsp;
+				    		<input type="radio" value="MALE" name="sex" <c:if test="${user.gender.name()=='MALE' }">checked="checked"</c:if>>先生
+				    	</p>
+				    	
 				    	<p>
 				    		<input type="text" value="${user.phone}" class="form-control" placeholder="电话" name="phone" / >
 				    		<span class="red"></span>
 				    	</p>
+				    	
 				    	<p>
 				    		<input type="text"  value="${user.email}" class="form-control" placeholder="邮箱" name="email" / >
 				    		<span class="red"></span>

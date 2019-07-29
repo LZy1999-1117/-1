@@ -117,6 +117,9 @@
   		<if test="nickname !=null">
   			nickname=#{nickname,jdbcType=VARCHAR},
   		</if>
+  		<if test="gender !=null">
+  			gender=#{gender.ordinal,jdbcType=VARCHAR},
+  		</if>
   		<if test="phone !=null">
   			phone=#{phone,jdbcType=VARCHAR},
   		</if>
@@ -143,7 +146,8 @@
   	select * from cms_user where id=#{id}
   </select>
   
-  
+  	
+  	<!-- 我的评论 -->
    <select id="commentsUser" parameterType="int" resultType="com.lzy.cms.domain.Comment" >
 	select  cc.id,cc.content,cc.displayTime,ca.title,cu.username as username from  cms_comment cc,cms_user  cu,cms_article ca where cc.blog_id=ca.id and cc.user_id=cu.id 
   	and cc.user_id=#{0}
@@ -152,7 +156,7 @@
   		where  c.user_id=u.id and a.id=c.blog_id and c.user_id=2 -->
   </select>
   
-  
+  <!-- 修改头像 -->
   <update id="upload" parameterType="com.lzy.cms.domain.User">
   	update cms_user set picture=#{picture} where id=#{id}
   </update>
