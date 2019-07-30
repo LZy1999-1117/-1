@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
@@ -42,7 +44,24 @@
 				<div class="panel panel-default">
 				  <div class="panel-body">
 				   <h1>我的头像</h1>
-				    	<hr/>
+				    	<form action="/my/profile/upload" enctype="multipart/form-data" method="post" >
+						
+						<img alt="" src="${_LOGIN_USER_.picture }" class="rounded img-fluid">
+				    	<div><br></div>
+				    	<div><br></div>
+				    	<div><br></div>
+				    	<div><br></div>
+				    	<p>上传头像：<input type="file" name="file"/> </p>
+				    	<div><br></div>
+				    	<div><br></div>
+				    	<div><br></div><div><br></div>
+				    	<div><br></div>
+				    	<div><br></div>
+				    	<p>
+				    		<button type="submit" class="btn btn-info btn-block">保存</button> 
+				    	</p>
+				    	
+				    	</form>
 				  </div>
 				</div>
 				

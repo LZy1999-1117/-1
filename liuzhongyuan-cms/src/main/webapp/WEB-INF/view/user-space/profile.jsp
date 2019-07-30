@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
@@ -41,7 +43,60 @@
 			<div class="col-md-9">
 				<div class="panel panel-default">
 				  <div class="panel-body">
-				    右边区域
+				    <fieldset><legend>个人设置</legend></fieldset>
+				    <hr class="bg-danger"/>
+					<form action="/my/user/save" enctype="multipart/form-data" method="post" >
+				    	<input type="hidden" value="${user.id}" name="id">
+				    	<p align="center" class="red"> </p>
+				    	
+				    	<p>
+				    		<input type="text" value="${user.username}" class="form-control" placeholder="用户名" name="username"/ >
+				    		<span class="red"></span>
+				    	</p>
+				    	<p>
+				    		<input  type="text" value="${user.nickname}" class="form-control" placeholder="姓名" name="nickname" / >
+				    		<span class="red"></span>
+				    	</p>
+				    	
+				    	<p>
+				    		性别 : &nbsp;&nbsp;&nbsp;&nbsp;
+				    		<input type="radio" value="FAMALE" name="sex" <c:if test="${user.gender.name()=='FAMALE' }">checked="checked"</c:if>>女士
+				    		&nbsp;&nbsp;&nbsp;&nbsp;
+				    		<input type="radio" value="MALE" name="sex" <c:if test="${user.gender.name()=='MALE' }">checked="checked"</c:if>>先生
+				    	</p>
+				    	<p>
+				    		时间: &nbsp;&nbsp;&nbsp;&nbsp;
+				    		<input  type="date" value="${birth}" class="form-control"  name="birth" / >
+				    		<span class="red"></span>
+				    	</p>
+				    	<p>
+				    		<input type="text" value="${user.phone}" class="form-control" placeholder="电话" name="phone" / >
+				    		<span class="red"></span>
+				    	</p>
+				    	
+				    	<p>
+				    		<input type="text"  value="${user.email}" class="form-control" placeholder="邮箱" name="email" / >
+				    		<span class="red"></span>
+				    	</p>
+				    	
+				    	<p>
+				    		<input type="text"  value="${user.address}" class="form-control" placeholder="地区" name="address" / >
+				    		<span class="red"></span>
+				    	</p>
+				    	<p>
+				    		<input type="text"  value="${user.star}" class="form-control" placeholder="星座" name="star" / >
+				    		<span class="red"></span>
+				    	</p>
+				    	
+				    	<p>
+				    		<input type="text"  value="${user.motto}" class="form-control" placeholder="座右铭" name="motto" / >
+				    		<span class="red"></span>
+				    	</p>
+				    	<p>
+				    		<button type="submit" class="btn btn-info btn-block">保存</button> 
+				    	</p>
+				    	
+				    	</form>
 				  </div>
 				</div>
 				

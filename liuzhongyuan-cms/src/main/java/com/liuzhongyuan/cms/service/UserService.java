@@ -18,4 +18,10 @@ public interface UserService {
 	public abstract User get(String username);
 
 	public int count(User user);
+
+	public abstract void upload(User u);
+
+	public abstract User selectById(Integer id);
+
+	public abstract void updateByd(User user);
 }

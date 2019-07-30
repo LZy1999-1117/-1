@@ -11,10 +11,19 @@
     <result column="locked" jdbcType="BIT" property="locked" />
     <result column="created" jdbcType="TIMESTAMP" property="created" />
     <result column="updated" jdbcType="TIMESTAMP" property="updated" />
+    
+    
+     <result column="phone" jdbcType="TIMESTAMP" property="phone" />
+    <result column="email" jdbcType="TIMESTAMP" property="email" />
+    <result column="star" jdbcType="TIMESTAMP" property="star" />
+    <result column="address" jdbcType="TIMESTAMP" property="address" />
+    <result column="motto" jdbcType="TIMESTAMP" property="motto" />
+    <result column="picture" jdbcType="VARCHAR" property="picture" />
+    
   </resultMap>
   
   <sql id="Base_Column_List">
-    id, username, password, nickname, birthday, gender, locked, created, updated
+    id, username, password, nickname, birthday, gender, locked, created, updated,phone,star,address,motto,picture,email
   </sql>
   
   <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -94,5 +103,47 @@
       </if>
     </trim>
   </insert>
+  
+  <!-- 修改头像 -->
+  <update id="upload" parameterType="com.liuzhongyuan.cms.domain.User">
+  	update cms_user set picture=#{picture} where id=#{id}
+  </update>
+  
+  
+   <!-- 修改 个人设置 -->
+  <update id="updateByd" parameterType="com.liuzhongyuan.cms.domain.User">
+  	
+  	update cms_user 
+  	<set>
+  		<if test="username !=null">
+  			username=#{username,jdbcType=VARCHAR},
+  		</if>
+  		<if test="nickname !=null">
+  			nickname=#{nickname,jdbcType=VARCHAR},
+  		</if>
+  		<if test="gender !=null">
+  			gender=#{gender.ordinal,jdbcType=VARCHAR},
+  		</if>
+  		<if test="phone !=null">
+  			phone=#{phone,jdbcType=VARCHAR},
+  		</if>
+  		<if test="email !=null">
+  			email=#{email,jdbcType=VARCHAR},
+  		</if>
+  		<if test="address !=null">
+  			address=#{address,jdbcType=VARCHAR},
+  		</if>
+  		<if test="star !=null">
+  			star=#{star,jdbcType=VARCHAR},
+  		</if>
+  		<if test="motto !=null">
+  			motto=#{motto,jdbcType=VARCHAR}
+  		</if>
+  	</set>
+  	
+  	where id=#{id,jdbcType=INTEGER}
+  	
+  </update>
+  
   
 </mapper>

@@ -24,5 +24,9 @@ public interface UserMapper {
 	public User selectByUsername(String username);
 
 	public int count(User user);
+
+	public void upload(User u);
+
+	public void updateByd(User user);
 	
 }

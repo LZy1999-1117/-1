@@ -54,7 +54,7 @@
 				</div>
 				<hr/>
 				<div class="content">
-					
+					<c:if test="${blog.type==1 }">
 						<!-- 幻灯片 -->
 						<c:if test="${not empty pictures}">
 						<div id="carouselExampleIndicators" class="carousel picture" data-ride="carousel">
@@ -85,6 +85,10 @@
 						  </a>
 						</div>
 						</c:if>
+					</c:if>
+					<c:if test="${blog.type==null }">
+						${blog.content}
+					</c:if>
 					
 					<%-- <c:otherwise>
 						${blog.content}
@@ -127,7 +131,7 @@
 				  </div>
 				  <div class="panel-body">
 				  	<c:forEach items="${hitBlogs}" var="blog">
-					    <p><a href="/blog/${blog.id}">${blog.title}</a></p>
+					    <p><a href="/blog/${blog.id}" style="${blog.style}">${blog.title}</a></p>
 				  	</c:forEach>
 				  </div>
 				</div>

@@ -69,14 +69,25 @@ public class Article implements Serializable {
 	
 	// 类型
 	private Integer type;
+	
+	//样式
+	private String style;
 	//---------------------------------------------------------------------
-
+	
 	
 	
 	public Article() {
 		super();
 	}
 	
+	public String getStyle() {
+		return style;
+	}
+
+	public void setStyle(String style) {
+		this.style = style;
+	}
+
 	public Integer getType() {
 		return type;
 	}

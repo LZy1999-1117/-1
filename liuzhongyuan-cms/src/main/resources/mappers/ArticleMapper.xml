@@ -16,7 +16,7 @@
     <result column="created" property="created" jdbcType="TIMESTAMP"/>
     <result column="updated" property="updated" jdbcType="TIMESTAMP"/>
     <result column="type" property="type" jdbcType="INTEGER"/>
-    
+    <result column="style" property="style" jdbcType="VARCHAR"/>
     
     <result column="author_id" property="author.id" jdbcType="INTEGER"/>
     <result column="author_nickname" property="author.nickname" jdbcType="VARCHAR"/>
@@ -74,7 +74,7 @@
   </sql>
   
   <sql id="Base_Column_List">
-    id, title, summary, picture, channel_id, category_id, user_id, hits, hot, status, deleted, created, updated,type
+    id, title, summary, picture, channel_id, category_id, user_id, hits, hot, status, deleted, created, updated,type,style
   </sql>
   <sql id="Base_Column_Lob">
     id, title, summary, picture, channel_id, category_id, user_id, hits, hot, status, deleted, created, updated, content
@@ -125,6 +125,9 @@
       <if test="type != null">
         type,
       </if>
+       <if test="style != null">
+        style,
+      </if>
     </trim>
  
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -170,12 +173,15 @@
       <if test="type != null">
         #{type,jdbcType=INTEGER},
       </if>
+      <if test="style != null">
+        #{style,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <!-- 根据主键查询 -->
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
 	SELECT 
-		b.id, b.title, b.picture, b.summary, b.content, b.channel_id, b.category_id, b.user_id, b.hits, b.hot, b.created, b.updated, 
+		b.id, b.title, b.picture, b.summary, b.content, b.channel_id, b.category_id, b.user_id, b.hits, b.hot, b.created, b.updated,b.type,b.style,
 		u.id as author_id,
 		u.nickname as author_nickname,
 		ch.id as channel_id,
@@ -192,7 +198,7 @@
 
   <select id="selects" resultMap="BaseResultMap">
 	SELECT 
-		b.id, b.title, b.picture, b.summary, b.channel_id, b.category_id, b.user_id, b.hits, b.hot,b.status,b.deleted, b.created, b.updated, 
+		b.id, b.title, b.picture, b.summary, b.channel_id, b.category_id, b.user_id, b.hits, b.hot,b.status,b.deleted, b.created, b.updated,b.type,b.style,
 		u.id as author_id,
 		u.nickname as author_nickname,
 		ch.id as channel_id,
@@ -242,7 +248,7 @@
   
   <select id="queryAll" parameterType="article" resultType="article">
 	SELECT 
-		b.id, b.title, b.picture, b.summary, b.channel_id, b.category_id, b.user_id, b.hits, b.hot,b.status,b.deleted, b.created, b.updated, 
+		b.id, b.title, b.picture, b.summary, b.channel_id, b.category_id, b.user_id, b.hits, b.hot,b.status,b.deleted, b.created, b.updated,b.type,b.style,
 		u.id as author_id,
 		u.nickname as author_nickname,
 		ch.id as channel_id,

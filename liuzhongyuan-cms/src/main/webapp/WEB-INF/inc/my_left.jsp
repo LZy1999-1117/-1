@@ -1,7 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <div class="avatar">
-	<img alt="" src="/images/default_avatar.png" class="img-thumbnail">
+	
+	<c:if test="${_LOGIN_USER_  != null}">
+		
+		<img alt="" src="${_LOGIN_USER_.picture }" class="img-thumbnail">
+	</c:if>
+	<c:if test="${_LOGIN_USER_  == null}">
+		<img alt="" src="/images/default_avatar.png" class="img-thumbnail">
+	</c:if>
 	</div>
 	<br/>
 	<div>
